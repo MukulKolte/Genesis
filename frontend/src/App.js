@@ -6,6 +6,7 @@ import Participants from './Components/Participants.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Aboutus from './Components/Aboutus.js';
 import Teacher from './Components/Teacher.js';
+import ErrorPage from './Static/ErrorPage.js';
 
 function App() {
   
@@ -16,10 +17,11 @@ function App() {
       <Routes>
           <Route path="/aboutus" element={<Aboutus />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
+          {true && <Route path="/admin" element={<Admin />} />}
           <Route path="/organizer" element={<Organizer />} />
           <Route path="/participants" element={<Participants />} />
           <Route path="/teacher" element={<Teacher />} />
+          <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
     </>

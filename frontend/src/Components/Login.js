@@ -12,13 +12,14 @@ function Login() {
                 <input type="number" id="stid" name="stid" /><br />
                 <label for="name">Name:</label><br />
                 <input type="text" id="name" name="name" /><br />
-                <label for="lname">Password:</label><br />
+                <label for="pass">Password:</label><br />
                 <input type="password" id="pass" name="pass" /><br />
-                <label for="lname">Role:</label><br />
-                <select name="cars" id="cars">
+                <label for="role">Role:</label><br />
+                <select name="role" id="role">
                     <option value="admin">Admin</option>
                     <option value="organizer">Organizer</option>
                     <option value="participant">Participant</option>
+                    <option value="teacher">Teacher</option>
                 </select><br /><br />
                 <input type="submit" value="Submit" />
             </form>
