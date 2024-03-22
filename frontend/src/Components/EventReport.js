@@ -1,23 +1,9 @@
 import React from 'react'
-import { useEffect, useState } from 'react'
-import axios from 'axios';
-import User_Registration from './User_Registration';
 
-function Admin() {
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/test')
-      .then(res => setData(res.data))
-      .catch(err => console.log(err));
-  }, [])
-
+function EventReport() {
   return (
     <div>
-      <h1>This is Admin page.</h1>
-      {/* <img src='D:/Event manager/event' alt='This is image' /> */}
-      {/* <table>
+      <table>
         <thead>
           <tr>
             <th>ID</th>
@@ -43,11 +29,9 @@ function Admin() {
             </tr>
           })}
         </tbody>
-      </table> */}
-
-      <User_Registration />
+      </table>
     </div>
   )
 }
 
-export default Admin
+export default EventReport
