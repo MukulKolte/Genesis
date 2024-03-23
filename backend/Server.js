@@ -1,11 +1,28 @@
 import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
+import multer from 'multer';
+import path from 'path';
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static('public')); // to make images accessible from server
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/images')
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname));
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -40,6 +57,25 @@ app.post('/user_registration', (req, res) => {
     ]
     db.query(sql, [values], (err, result) => {
         if(err) return res.json(err);
+        return res.json(result);
+    })
+})
+
+
+app.post('/upload', upload.single('image'), (req, res) => {
+    const image = req.file.filename;
+    const sql = "UPDATE competition_registration SET image = ?";
+
+    db.query(sql, [image], (err, result) => {
+        if(err) return res.json({Message: "Error"});
+        return res.json({Status: "Success."});
+    })
+})
+
+app.get('/', (req, res) => {
+    const sql = 'select * from competition_registration';
+    db.query(sql, (err, result) => {
+        if(err) return res.json("Error");
         return res.json(result);
     })
 })
