@@ -64,7 +64,7 @@ app.post('/user_registration', (req, res) => {
 
 app.post('/upload', upload.single('image'), (req, res) => {
     const image = req.file.filename;
-    const sql = "UPDATE competition_registration SET image = ?";
+    const sql = "UPDATE competition_registration t1 JOIN (SELECT MAX(id) AS max_id FROM competition_registration) t2 SET t1.image = ? WHERE t1.id = t2.max_id";
 
     db.query(sql, [image], (err, result) => {
         if(err) return res.json({Message: "Error"});
@@ -79,6 +79,41 @@ app.get('/', (req, res) => {
         return res.json(result);
     })
 })
+
+app.post('/competition_registration', (req, res) => {
+    console.log(req.body);
+    const sql = "INSERT INTO competition_registration (`comp_title`, `comp_theme`, `status`, `date_0f_competition`, `description`) VALUES (?)";
+    console.log(req.body);
+    const values = [
+        req.body.comp_title,
+        req.body.comp_theme,
+        req.body.status,
+        req.body.date_of_competition,
+        req.body.description
+    ]
+    db.query(sql, [values], (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+})
+
+app.post('/login', (req, res) => {
+
+    const query = "SELECT id FROM user_registration WHERE email = ? AND password = ? AND user_role= ?";
+
+    console.log("credentials: " + req.body);
+
+    const values = [
+        req.body.email,
+        req.body.password,
+        req.body.role
+    ]
+    db.query(query, values, (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+  });
+
 
 app.listen(8080, ()=> {
     console.log("Listening...");

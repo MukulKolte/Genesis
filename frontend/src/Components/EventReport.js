@@ -7,7 +7,7 @@ function EventReport() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/test')
+    axios.get('http://localhost:8080/')
       .then(res => setData(res.data))
       .catch(err => console.log(err));
   }, [])
@@ -18,12 +18,12 @@ function EventReport() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>image</th>
-            <th>title</th>
-            <th>min_guests</th>
-            <th>max_guests</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Theme</th>
+            <th>Status</th>
             <th>Date</th>
-            <th>Action</th>
+            <th>Description</th>
           </tr>
         </thead>
 
@@ -31,12 +31,12 @@ function EventReport() {
           {data.map((student, index) => {
             return <tr key={index}>
               <td>{student.id}</td>
-              <td><img src='D:\Event manager\event1' alt='This is image' /></td>
-              <td>{student.title}</td>
-              <td>{student.min_guests}</td>
-              <td>{student.max_guests}</td>
-              <td>{student.Date}</td>
-              <td>{student.Action}</td>
+              <td><img src={`http://localhost:8080/images/` + data[student.id - 1].image} alt='This is image' width={200} height={200} /></td>
+              <td>{student.comp_title}</td>
+              <td>{student.comp_theme}</td>
+              <td>{student.status}</td>
+              <td>{student.date_0f_competition}</td>
+              <td>{student.description}</td>
             </tr>
           })}
         </tbody>

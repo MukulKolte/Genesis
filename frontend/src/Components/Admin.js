@@ -9,8 +9,8 @@ function Admin() {
   return (
     <div>
       <h1>This is Admin page.</h1>
-      {/* <EventReport />
-      <User_Registration /> */}
+      <EventReport />
+      <User_Registration />
       <FileUpload />
     </div>
   )
