@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Home/Header';
+import Footer from '../Home/Footer';
 
 function FileUpload() {
 
@@ -54,6 +56,16 @@ function FileUpload() {
 
     return (
         <div>
+            <Header/>
+            <nav id="navbar">
+                    <div class="container">
+                            <ul>
+                                <li><a href="/organizer">Home</a></li> 
+                                <li><a href="/fileupload">Organise Competition</a></li>
+                            </ul>
+                    </div>
+                </nav> 
+
 
             <form id='competition_form' onSubmit={handleSubmit}>
 
@@ -81,7 +93,8 @@ function FileUpload() {
             <button onClick={handleUpload}>Upload</button> <br /><br />
 
             <img src={`http://localhost:8080/images/` + data.image} alt='This is image' />
-
+            
+            <Footer/>
         </div>
     )
 }

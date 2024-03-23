@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import Header from '../Home/Header';
+import Footer from '../Home/Footer';
+import { Box } from '@mui/material';
 
 function User_Registration() {
 
@@ -33,6 +36,19 @@ function User_Registration() {
 
     return (
         <div>
+            <Header/>
+             <nav id="navbar">
+                    <div class="container">
+                            <ul>
+                                <li><a href="/admin">Home</a></li>
+                                <li><a href="/eventreport">Event Report</a></li>
+                                <li><a href="/register">Register User</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                    </div>
+                </nav> 
+
+
             <form id='user_registration_form' onSubmit={handleSubmit}>
 
                 <label>Name:</label><br />
@@ -77,6 +93,8 @@ function User_Registration() {
 
                 <input type="submit" value="Submit" />
             </form>
+           
+            <Footer/>
         </div>
     )
 }

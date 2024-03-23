@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import Header from '../Home/Header';
 
 function EventReport() {
 
@@ -14,6 +15,17 @@ function EventReport() {
 
   return (
     <div>
+      <Header/>
+      <nav id="navbar">
+                    <div class="container">
+                            <ul>
+                                <li><a href="/admin">Home</a></li>
+                                <li><a href="/eventreport">Event Report</a></li>
+                                <li><a href="/register">Register User</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                    </div>
+                </nav> 
       <table>
         <thead>
           <tr>

@@ -1,0 +1,16 @@
+
+
+#login-head {
+    text-align: center;
+}
+
+#container-login {
+    width:80%;
+    height: 600px;
+    margin:auto;
+}
+
+#container-login form{
+    text-align: center;
+   
+}

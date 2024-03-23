@@ -1,6 +1,10 @@
 import axios from 'axios';
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import Header from '../Home/Header';
+import Footer from '../Home/Footer';
+import './Login.css';
+import { Box } from '@mui/material';
 
 function Login() {
 
@@ -18,17 +22,43 @@ function Login() {
         })
         .then(res => {
             console.log(res);
-            navigate('/login');
+            navigate('/participants');
         })
         .catch(err => console.log('This is error'));
     }
 
     return (
         <div>
-            <h1>This is login page.</h1>
+            <Header/>
+            <nav id="navbar">
+                    <div class="container">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/aboutus">About</a></li>
+                                <li><a href="/competitions">Competitions</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                    </div>
+                </nav> 
 
+            <div id="login-head">
             <h2>Get yourselves logged in!!</h2>
-
+            </div>
+            <div id="container-login">
+            <Box
+                  height={200}
+                  width={200}
+                  my={4}
+                  display="flex"
+                  flexDirection="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  gap={4}
+                  p={2}
+                  sx={{ border: '2px solid grey' }}
+                >
+                
+                
             <form id='login_form' onSubmit={handleSubmit}>
 
                 <label for="email">Email:</label><br />
@@ -47,6 +77,9 @@ function Login() {
 
                 <input type="submit" value="Submit" />
             </form>
+            </Box>
+            </div>
+            <Footer></Footer>
         </div>
     )
 }
