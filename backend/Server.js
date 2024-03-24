@@ -80,6 +80,14 @@ app.get('/', (req, res) => {
     })
 })
 
+app.get('/user_report', (req, res) => {
+    const sql = 'select * from user_registration';
+    db.query(sql, (err, result) => {
+        if(err) return res.json("Error");
+        return res.json(result);
+    })
+})
+
 app.post('/competition_registration', (req, res) => {
     console.log(req.body);
     const sql = "INSERT INTO competition_registration (`comp_title`, `comp_theme`, `status`, `date_0f_competition`, `description`) VALUES (?)";

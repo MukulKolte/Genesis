@@ -14,13 +14,15 @@ import EventReport from './Components/Admin/EventReport.js';
 import User_Registration from './Components/Login/User_Registration.js';
 import FileUpload from './Components/Organizer/FileUpload.js';
 import { Switch } from '@mui/material';
+import { useEffect } from 'react';
+import UserReport from './Components/Admin/UserReport.js';
 
 
 
 function App() {
 
   // window.location.reload(false);
-
+  console.log("Hellow");
   return (
     <>
     <BrowserRouter>
@@ -41,9 +43,17 @@ function App() {
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'teacher') || (localStorage.getItem('user_role') === "admin")) &&
           <Route path="/teacher" element={<Teacher />} />}
 
-          <Route path="/eventreport" element={<EventReport />} />
-          <Route path="/register" element={<User_Registration />} />
-          <Route path="/fileupload" element={<FileUpload />} />
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'teacher') || (localStorage.getItem('user_role') === "admin") || (localStorage.getItem('user_role') === 'organizer')) &&
+          <Route path="/event_report" element={<EventReport />} />}
+
+          {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
+          <Route path="/register" element={<User_Registration />} />}
+
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
+          <Route path="/fileupload" element={<FileUpload />} />}
+
+          {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
+          <Route path="/user_report" element={<UserReport />} />}
 
           <Route path="*" element={<ErrorPage />} />
       </Routes>

@@ -38,6 +38,7 @@ function Login() {
                 // window.location.reload(false);
                 // setTimeout(3000);
                 navigate(pageMapping[localStorage.getItem('user_role')]);
+                window.location.reload(false);
             }
         })
         .catch(err => console.log('This is error'));
