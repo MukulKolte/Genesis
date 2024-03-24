@@ -29,7 +29,7 @@ function User_Registration() {
         })
         .then(res => {
             console.log(res);
-            navigate('/admin');
+            navigate('/login');
         })
         .catch(err => console.log('This is error'));
     }

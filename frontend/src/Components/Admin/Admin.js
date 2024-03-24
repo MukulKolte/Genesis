@@ -23,8 +23,8 @@ function Admin() {
                 </nav> 
       <h1>This is Admin page.</h1>
       
-      
-      
+      <EventReport />
+
       <Footer/>
     </div>
   )

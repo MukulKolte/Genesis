@@ -99,20 +99,36 @@ app.post('/competition_registration', (req, res) => {
 
 app.post('/login', (req, res) => {
 
-    const query = "SELECT id FROM user_registration WHERE email = ? AND password = ? AND user_role= ?";
+    const query = "SELECT id, user_role FROM user_registration WHERE email = ? AND password = ?";
 
-    console.log("credentials: " + req.body);
+    // console.log("credentials: " + req.body);
 
     const values = [
         req.body.email,
         req.body.password,
-        req.body.role
+        // req.body.role
     ]
     db.query(query, values, (err, result) => {
         if(err) return res.json(err);
         return res.json(result);
     })
   });
+
+app.post('/teacher_approval', (req, res) => {
+
+    const query = "UPDATE competition_registration SET teacher_approval = ? WHERE id = ?";
+
+    const values = [
+        req.body.decision,
+        req.body.id
+    ]
+
+    db.query(query, values, (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+
+});
 
 
 app.listen(8080, ()=> {

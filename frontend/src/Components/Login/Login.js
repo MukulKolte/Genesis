@@ -18,11 +18,27 @@ function Login() {
         axios.post('http://localhost:8080/login', {
             email: form_login.elements['email'].value,
             password: form_login.elements['pass'].value,
-            role: form_login.elements['role'].value
+            // role: form_login.elements['role'].value
         })
         .then(res => {
-            console.log(res);
-            navigate('/participants');
+            // console.log(res.data.length);
+            if(res.data.length === 0) {
+                alert("Invalid credentials.")
+            }
+            else{
+                localStorage.setItem('user_id', res.data[0].id);
+                localStorage.setItem('user_role', res.data[0].user_role);
+                const pageMapping = {
+                    admin: "/admin",
+                    participant: "/participants",
+                    teacher: "/teacher",
+                    organizer: "/organizer"
+                }
+                alert('Login success!!');
+                // window.location.reload(false);
+                // setTimeout(3000);
+                navigate(pageMapping[localStorage.getItem('user_role')]);
+            }
         })
         .catch(err => console.log('This is error'));
     }
@@ -65,15 +81,15 @@ function Login() {
                 <input type="text" id="email" name="email" /><br />
 
                 <label for="pass">Password:</label><br />
-                <input type="password" id="pass" name="pass" /><br />
+                <input type="password" id="pass" name="pass" /><br /> <br />
 
-                <label for="role">Role:</label><br />
+                {/* <label for="role">Role:</label><br />
                 <select name="role" id="role">
                     <option value="admin">Admin</option>
                     <option value="organizer">Organizer</option>
                     <option value="participant">Participant</option>
                     <option value="teacher">Teacher</option>
-                </select><br /><br />
+                </select><br /><br /> */}
 
                 <input type="submit" value="Submit" />
             </form>

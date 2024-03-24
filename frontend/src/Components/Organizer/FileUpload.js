@@ -49,7 +49,7 @@ function FileUpload() {
         })
         .then(res => {
             console.log(res);
-            navigate('/admin');
+            // navigate('/admin');
         })
         .catch(err => console.log('This is error'));
     }
@@ -92,7 +92,7 @@ function FileUpload() {
             <input type='file' onChange={handleFile} />
             <button onClick={handleUpload}>Upload</button> <br /><br />
 
-            <img src={`http://localhost:8080/images/` + data.image} alt='This is image' />
+            {/* <img src={`http://localhost:8080/images/` + data.image} alt='This is image' /> */}
             
             <Footer/>
         </div>
