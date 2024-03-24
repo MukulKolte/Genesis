@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from '../Home/Header'
 import Footer from '../Home/Footer'
+import EventReport from '../Admin/EventReport'
 
 function Teacher() {
   return (
@@ -15,6 +16,8 @@ function Teacher() {
                     </div>
                 </nav> 
       <h1>This is Teacher login.</h1>
+
+      <EventReport />
       <Footer/>
     </div>
   )

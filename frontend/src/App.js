@@ -13,11 +13,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EventReport from './Components/Admin/EventReport.js';
 import User_Registration from './Components/Login/User_Registration.js';
 import FileUpload from './Components/Organizer/FileUpload.js';
+import { Switch } from '@mui/material';
 
 
 
 function App() {
-  
+
+  // window.location.reload(false);
 
   return (
     <>
@@ -26,13 +28,23 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/aboutus" element={<AboutUs/>} />
           <Route path="/login" element={<Login />} />
-          {true && <Route path="/admin" element={<Admin />} />}
-          <Route path="/organizer" element={<Organizer />} />
-          <Route path="/participants" element={<Participants />} />
-          <Route path="/teacher" element={<Teacher />} />
+
+          {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
+          <Route path="/admin" element={<Admin />} />}
+  
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
+          <Route path="/organizer" element={<Organizer />} />}
+
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'participant') || (localStorage.getItem('user_role') === "admin")) &&
+          <Route path="/participants" element={<Participants />} />}
+
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'teacher') || (localStorage.getItem('user_role') === "admin")) &&
+          <Route path="/teacher" element={<Teacher />} />}
+
           <Route path="/eventreport" element={<EventReport />} />
           <Route path="/register" element={<User_Registration />} />
           <Route path="/fileupload" element={<FileUpload />} />
+
           <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>

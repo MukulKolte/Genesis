@@ -2,10 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
 import Header from '../Home/Header';
+import { useNavigate } from 'react-router-dom';
 
 function EventReport() {
 
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:8080/')
@@ -13,9 +15,22 @@ function EventReport() {
       .catch(err => console.log(err));
   }, [])
 
+  const handleClick = (decision, id) => {
+    
+    axios.post('http://localhost:8080/teacher_approval', {
+      decision: decision,
+      id: id
+    })
+    .then(res => {
+      // console.log(res);
+      navigate('/teacher');
+  })
+  .catch(err => console.log('This is error'));
+  }
+
   return (
     <div>
-      <Header/>
+      {/* <Header/>
       <nav id="navbar">
                     <div class="container">
                             <ul>
@@ -25,7 +40,7 @@ function EventReport() {
                                 <li><a href="/contact">Contact</a></li>
                             </ul>
                     </div>
-                </nav> 
+                </nav>  */}
       <table>
         <thead>
           <tr>
@@ -36,6 +51,8 @@ function EventReport() {
             <th>Status</th>
             <th>Date</th>
             <th>Description</th>
+            <th>Approval status</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -49,6 +66,8 @@ function EventReport() {
               <td>{student.status}</td>
               <td>{student.date_0f_competition}</td>
               <td>{student.description}</td>
+              <td>{student.teacher_approval}</td>
+              <td><button onClick={e => handleClick('approved', student.id)}>approve</button><button onClick={e => handleClick('rejected', student.id)}>Reject</button></td>
             </tr>
           })}
         </tbody>
