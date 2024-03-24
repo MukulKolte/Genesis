@@ -24,23 +24,24 @@ function EventReport() {
     .then(res => {
       // console.log(res);
       navigate('/teacher');
+      window.location.reload(false); //To refresh the page so that app.js will re-render
   })
   .catch(err => console.log('This is error'));
   }
 
   return (
     <div>
-      {/* <Header/>
+      <Header/>
       <nav id="navbar">
                     <div class="container">
                             <ul>
                                 <li><a href="/admin">Home</a></li>
-                                <li><a href="/eventreport">Event Report</a></li>
+                                <li><a href="/event_report">Event Report</a></li>
                                 <li><a href="/register">Register User</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/user_report">User Report</a></li>
                             </ul>
                     </div>
-                </nav>  */}
+                </nav> 
       <table>
         <thead>
           <tr>
