@@ -98,6 +98,20 @@ app.get('/available_competitions', (req, res) => {
     })
 })
 
+app.post('/personal_enrollments', (req, res) => {
+
+    const query = "SELECT distinct * FROM user_enrollment WHERE user_id = ?";
+
+    const values = [
+        req.body.user_id
+    ]
+
+    db.query(query, values, (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+  });
+
 
 app.post('/competition_registration', (req, res) => {
     console.log(req.body);
