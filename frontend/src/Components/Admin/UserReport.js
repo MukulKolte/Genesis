@@ -53,7 +53,7 @@ function UserReport() {
                             <td>{user.user_role}</td>
                             <td>{user.mobile_number}</td>
                             <td>{user.email}</td>
-                            <td>{user.dob}</td>
+                            <td>{user.date_of_birth}</td>
                             <td>{user.address}</td>
                             <td><button onClick={e => handleClick('approved', user.id)}>Edit</button><button onClick={e => handleClick('rejected', user.id)}>Delete</button></td>
                         </tr>

@@ -31,7 +31,7 @@ function EventReport() {
 
   return (
     <div>
-      <Header/>
+      {/* <Header/>
       <nav id="navbar">
                     <div class="container">
                             <ul>
@@ -41,7 +41,7 @@ function EventReport() {
                                 <li><a href="/user_report">User Report</a></li>
                             </ul>
                     </div>
-                </nav> 
+                </nav>  */}
       <table>
         <thead>
           <tr>

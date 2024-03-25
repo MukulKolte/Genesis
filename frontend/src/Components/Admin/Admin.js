@@ -10,7 +10,7 @@ function Admin() {
 
   return (
     <div>
-      {/* <Header/>
+      <Header/>
       <nav id="navbar">
                     <div class="container">
                             <ul>
@@ -20,7 +20,7 @@ function Admin() {
                                 <li><a href="/user_report">User Report</a></li>
                             </ul>
                     </div>
-                </nav>  */}
+                </nav> 
       <h1>This is Admin page.</h1>
       
       <EventReport />

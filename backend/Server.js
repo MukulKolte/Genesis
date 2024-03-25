@@ -88,6 +88,17 @@ app.get('/user_report', (req, res) => {
     })
 })
 
+app.get('/available_competitions', (req, res) => {
+
+    const sql = 'select * from competition_registration WHERE teacher_approval = "approved"';
+
+    db.query(sql, (err, result) => {
+        if(err) return res.json("Error");
+        return res.json(result);
+    })
+})
+
+
 app.post('/competition_registration', (req, res) => {
     console.log(req.body);
     const sql = "INSERT INTO competition_registration (`comp_title`, `comp_theme`, `status`, `date_0f_competition`, `description`) VALUES (?)";
@@ -132,6 +143,26 @@ app.post('/teacher_approval', (req, res) => {
     ]
 
     db.query(query, values, (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+
+});
+
+app.post('/user_enrollments', (req, res) => {
+
+    const query = "INSERT INTO user_enrollment (`user_id`, `comp_id`, `comp_title`, `comp_theme`, `date_0f_competition`, `description`, `image`) VALUES (?)";
+    const values = [
+        req.body.user_id,
+        req.body.comp_id,
+        req.body.comp_title,
+        req.body.comp_theme,
+        req.body.date_0f_competition,
+        req.body.description,
+        req.body.image
+    ]
+
+    db.query(query, [values], (err, result) => {
         if(err) return res.json(err);
         return res.json(result);
     })
