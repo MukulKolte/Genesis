@@ -16,6 +16,8 @@ import FileUpload from './Components/Organizer/FileUpload.js';
 import { Switch } from '@mui/material';
 import { useEffect } from 'react';
 import UserReport from './Components/Admin/UserReport.js';
+import Enrollments from './Components/User/Enrollments.js';
+import Competitions from './Components/Competitions.js';
 
 
 
@@ -54,6 +56,9 @@ function App() {
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
           <Route path="/user_report" element={<UserReport />} />}
+
+          <Route path='/user_enrollments' element={<Enrollments />} />
+          <Route path='/competitions' element={<Competitions />} />
 
           <Route path="*" element={<ErrorPage />} />
       </Routes>

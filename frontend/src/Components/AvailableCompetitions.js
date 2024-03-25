@@ -12,7 +12,8 @@ function AvailableCompetitions() {
     }, [])
 
     const handleClick = (id, title, theme, date, description, image) => {
-        
+      
+
         axios.post('http://localhost:8080/user_enrollments', {
             user_id: localStorage.getItem('user_id'),
             comp_id: id,
@@ -22,7 +23,9 @@ function AvailableCompetitions() {
             description: description,
             image: image
         })
-        .then(res => console.log("Done"))
+        .then(res => {
+          console.log("Done");
+      })
         .catch(err => console.log("This is error"));
     }
 
@@ -48,7 +51,7 @@ function AvailableCompetitions() {
                     Status: {comp.status}            <br />
                     Date: {comp.date_0f_competition} <br />
                     Description: {comp.description}  <br />
-                    <button onClick={e => handleClick(comp.id, comp.comp_title, comp.comp_theme, comp.date_0f_competition, comp.description, (data[index].image))}>Enroll</button>
+                    <button id='enroll' onClick={e => handleClick(comp.id, comp.comp_title, comp.comp_theme, comp.date_0f_competition, comp.description, (data[index].image))}>Enroll</button>
               </td>
             </tr>
           })}
