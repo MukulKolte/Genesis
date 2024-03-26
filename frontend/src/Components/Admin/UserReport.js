@@ -41,7 +41,7 @@ function UserReport() {
                         <th>Email</th>
                         <th>Date Of Birth</th>
                         <th>Address</th>
-                        <th>Action</th>
+                        {/* <th>Action</th> */}
                     </tr>
                 </thead>
 
@@ -55,7 +55,7 @@ function UserReport() {
                             <td>{user.email}</td>
                             <td>{user.date_of_birth}</td>
                             <td>{user.address}</td>
-                            <td><button onClick={e => handleClick('approved', user.id)}>Edit</button><button onClick={e => handleClick('rejected', user.id)}>Delete</button></td>
+                            {/* <td><button onClick={e => handleClick('approved', user.id)}>Edit</button><button onClick={e => handleClick('rejected', user.id)}>Delete</button></td> */}
                         </tr>
                     })}
                 </tbody>
