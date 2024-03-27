@@ -6,8 +6,12 @@ function AvailableCompetitions() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/available_competitions')
-      .then(res => setData(res.data))
+    axios.post('http://localhost:8080/available_competitions', {
+      user_id: localStorage.getItem('user_id')
+    })
+      .then(res => {
+        setData(res.data);
+      })
       .catch(err => console.log(err));
 
   }, [])
@@ -26,13 +30,15 @@ function AvailableCompetitions() {
     })
       .then(res => {
         console.log("Done");
+        window.location.reload(false);
       })
       .catch(err => console.log("This is error"));
   }
 
   return (
     <div>
-      <table>
+      {data.length ? 
+       (<table>
         <thead>
           <tr>
             <th>ID</th>
@@ -57,7 +63,8 @@ function AvailableCompetitions() {
             </tr>
           })}
         </tbody>
-      </table>
+      </table>)
+      : (<h1>You are all caught up.</h1>)}
     </div>
   )
 }
