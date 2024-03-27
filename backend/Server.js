@@ -27,7 +27,7 @@ const upload = multer({
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "Once@2024",
+    password: "your_current_password",
     database: "Genesis"
 })
 

@@ -48,7 +48,7 @@ function Organizer() {
           {data.map((student, index) => {
             return <tr key={index}>
               <td>{student.id}</td>
-              <td><img src={`http://localhost:8080/images/` + data[student.id - 1].image} alt='This is image' width={200} height={200} /></td>
+              <td><img src={`http://localhost:8080/images/` + data[index].image} alt='This is image' width={200} height={200} /></td>
               <td>{student.comp_title}</td>
               <td>{student.comp_theme}</td>
               <td>{student.status}</td>
