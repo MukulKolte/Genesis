@@ -18,6 +18,7 @@ import { useEffect } from 'react';
 import UserReport from './Components/Admin/UserReport.js';
 import Enrollments from './Components/User/Enrollments.js';
 import Competitions from './Components/Competitions.js';
+import EnrollmentDetails from './Components/EnrollmentDetails.js';
 
 
 
@@ -27,42 +28,45 @@ function App() {
   console.log("Hellow");
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/aboutus" element={<AboutUs/>} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
-          <Route path="/admin" element={<Admin />} />}
-  
+            <Route path="/admin" element={<Admin />} />}
+
+          {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
+            <Route path="/enrollment_details" element={<EnrollmentDetails />} />}
+
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
-          <Route path="/organizer" element={<Organizer />} />}
+            <Route path="/organizer" element={<Organizer />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'participant') || (localStorage.getItem('user_role') === "admin")) &&
-          <Route path="/participants" element={<Participants />} />}
+            <Route path="/participants" element={<Participants />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'teacher') || (localStorage.getItem('user_role') === "admin")) &&
-          <Route path="/teacher" element={<Teacher />} />}
+            <Route path="/teacher" element={<Teacher />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'teacher') || (localStorage.getItem('user_role') === "admin") || (localStorage.getItem('user_role') === 'organizer')) &&
-          <Route path="/event_report" element={<EventReport />} />}
+            <Route path="/event_report" element={<EventReport />} />}
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
-          <Route path="/register" element={<User_Registration />} />}
+            <Route path="/register" element={<User_Registration />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
-          <Route path="/fileupload" element={<FileUpload />} />}
+            <Route path="/fileupload" element={<FileUpload />} />}
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
-          <Route path="/user_report" element={<UserReport />} />}
+            <Route path="/user_report" element={<UserReport />} />}
 
           <Route path='/user_enrollments' element={<Enrollments />} />
           <Route path='/competitions' element={<Competitions />} />
 
           <Route path="*" element={<ErrorPage />} />
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

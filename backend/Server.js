@@ -88,11 +88,16 @@ app.get('/user_report', (req, res) => {
     })
 })
 
-app.get('/available_competitions', (req, res) => {
+app.post('/available_competitions', (req, res) => {
 
-    const sql = 'select * from competition_registration WHERE teacher_approval = "approved"';
+    const sql = 'select * from competition_registration WHERE id IN (\
+        SELECT Distinct cr.id from competition_registration cr Left JOIN user_enrollment ur ON cr.id = ur.comp_id  WHERE teacher_approval = "approved" AND cr.id NOT IN (SELECT DISTINCT comp_id FROM user_enrollment WHERE user_id = ?))';
 
-    db.query(sql, (err, result) => {
+    const value = [
+        req.body.user_id
+    ];
+
+    db.query(sql, value, (err, result) => {
         if(err) return res.json("Error");
         return res.json(result);
     })
@@ -111,6 +116,19 @@ app.post('/personal_enrollments', (req, res) => {
         return res.json(result);
     })
   });
+
+
+app.get('/enrollment_details', (req, res) => {
+
+    const sql = "SELECT cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image, GROUP_CONCAT(u.name SEPARATOR ', ') AS user_names FROM user_enrollment cu JOIN user_registration u ON cu.user_id = u.id WHERE cu.comp_id IN (Select distinct fu.comp_id from user_enrollment fu) GROUP BY cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image";
+
+
+    db.query(sql, (err, result) => {
+        if(err) return res.json(err);
+        return res.json(result);
+    })
+
+})
 
 
 app.post('/competition_registration', (req, res) => {

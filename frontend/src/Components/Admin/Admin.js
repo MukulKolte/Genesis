@@ -18,6 +18,7 @@ function Admin() {
                                 <li><a href="/event_report">Event Report</a></li>
                                 <li><a href="/register">Register User</a></li>
                                 <li><a href="/user_report">User Report</a></li>
+                                <li><a href="/enrollment_details">Enrollment Details</a></li>
                             </ul>
                     </div>
                 </nav> 
