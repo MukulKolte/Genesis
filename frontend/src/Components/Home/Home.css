@@ -1,0 +1,12 @@
+@keyframes headline {
+    from {color: rgb(0, 0, 0);}
+    to {color: #82b8ef;}
+  }
+
+  #headline {
+    color: red;
+    animation-name: headline;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+  }

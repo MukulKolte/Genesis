@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Home/Header'
 import axios from 'axios';
+import AdminNav from './AdminNav';
+import Footer from '../Home/Footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function UserReport() {
+export default function UserReport() {
 
     const [data, setData] = useState([]);
 
@@ -21,26 +24,19 @@ function UserReport() {
     return (
         <div>
             <Header />
-            <nav id="navbar">
-                <div class="container">
-                    <ul>
-                        <li><a href="/admin">Home</a></li>
-                        <li><a href="/event_report">Event Report</a></li>
-                        <li><a href="/register">Register User</a></li>
-                        <li><a href="/user_report">User Report</a></li>
-                    </ul>
-                </div>
-            </nav>
-            <table>
+            <AdminNav/>
+            <div id='for-full-page'>
+            <div className='container' id='to-leave-some-margin'>
+            <table class="table table-dark">
                 <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>User Role</th>
-                        <th>Mobile Number</th>
-                        <th>Email</th>
-                        <th>Date Of Birth</th>
-                        <th>Address</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">User Role</th>
+                        <th scope="col">Mobile Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Date Of Birth</th>
+                        <th scope="col">Address</th>
                         {/* <th>Action</th> */}
                     </tr>
                 </thead>
@@ -60,10 +56,13 @@ function UserReport() {
                     })}
                 </tbody>
             </table>
+            </div>
+            </div>
+            <Footer/>
 
 
         </div>
     )
 }
 
-export default UserReport
+

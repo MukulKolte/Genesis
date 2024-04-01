@@ -1,34 +1,37 @@
 import React from 'react'
-import User_Registration from '../Login/User_Registration';
-import EventReport from '../Admin/EventReport';
-import FileUpload from '../Organizer/FileUpload';
 import Header from '../Home/Header';
 import Footer from '../Home/Footer';
+import AdminNav from './AdminNav';
 
-function Admin() {
+export default function Admin() {
 
 
   return (
-    <div>
+    <div >
       <Header/>
-      <nav id="navbar">
-                    <div class="container">
-                            <ul>
-                                <li><a href="/admin">Home</a></li> 
-                                <li><a href="/event_report">Event Report</a></li>
-                                <li><a href="/register">Register User</a></li>
-                                <li><a href="/user_report">User Report</a></li>
-                                <li><a href="/enrollment_details">Enrollment Details</a></li>
-                            </ul>
-                    </div>
-                </nav> 
-      <h1>This is Admin page.</h1>
-      
-      <EventReport />
-
+      <AdminNav/>
+      <div id='admin-home' >
+      <div className='container'  >
+          <h1>Hello Admin ! Welcome to the Admin Dashboard.</h1>
+          <br/>
+          <h3>Dashboard Overview</h3>
+          <ul>
+            <li>Total Users: </li>
+            <li>Active Competitions:</li>
+          </ul>
+          <h3>Quick Actions</h3>
+          <ul>
+            <li><a href=''>Create New Competition</a></li>
+            <li><a href='/user_register'>Create New User</a></li>
+            <li><a href='/event_report'>View Event Report</a></li>
+            <li><a href='/user_report'>View User Report</a></li>
+            <li><a href='/enrollments'>View Enrollment Report</a></li>
+          </ul>
+      </div>
+      </div>
       <Footer/>
     </div>
   )
 }
 
-export default Admin
+

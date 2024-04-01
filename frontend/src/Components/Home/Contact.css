@@ -1,0 +1,66 @@
+/* Container styles */
+
+  
+  /* Heading styles */
+  #contact-heading {
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Contact Information styles */
+  #contact-info h2 {
+    color: #555;
+    text-align: center;
+  }
+  
+  #contact-info p {
+    color: #777;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  #contact-info a {
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  #contact-info a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Location styles */
+  #location h2 {
+    color: #555;
+    text-align: center;
+  }
+  
+  #location p {
+    color: #777;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Hours of Operation styles */
+  #hours h2 {
+    color: #555;
+    text-align: center;
+  }
+  
+  #hours p {
+    color: #777;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Confirmation message styles */
+  #confirmation {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #dff0d8;
+    border: 1px solid #d0e9c6;
+    border-radius: 5px;
+    color: #3c763d;
+    text-align: center;
+  }
+  

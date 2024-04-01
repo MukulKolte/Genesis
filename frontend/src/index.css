@@ -22,12 +22,14 @@ body{
   font-size:16px;
   line-height:1.6em;
   margin:0;
+ 
 }
 
 .container{
   width:80%;
   margin:auto;
   overflow:hidden;
+  
 
 }
 
@@ -39,13 +41,14 @@ body{
 }
 
 #navbar{
-  background-color: #05436f;
+  background-color: #167ee6;
   color: aliceblue;
 }
 
 #navbar ul{
   padding: 0;
   list-style:none;
+  margin-top: 10px;
 }
 
 #navbar li{
@@ -60,18 +63,60 @@ body{
 }
 
 #navbar a:hover{
-  color: cornflowerblue;
+  color: rgb(0, 0, 0);
 
 }
 
-#showcase{
-  /* background-image: url('Static/images/showcase.jpg'); */
+/* #showcase{
+  background-image: url('Static/images/background.jpg'); 
   background-position: center right;
   background-color: #d4ff37;
-  min-height: 600px; /* to make image responsive height will grow*/
+  min-height: 550px; /* to make image responsive height will grow
   margin-bottom: 30px;
   text-align: center;
   
+} */
+
+#showcase {
+  background-image: url('Static/images/background.jpg');
+  background-position: center right;
+  background-color: #000000;
+  min-height: 550px; /* Adjust this value as needed */
+  margin-bottom: 30px;
+  text-align: center;
+  background-size: cover; /* Add this line */
+  background-repeat: no-repeat; /* Optional: Prevents the image from repeating */
+  background-attachment: fixed; /* Optional: Fixes the image position within the container */
+}
+
+#admin-home {
+  /* background-image: url('Static/images/background_admin.jpg'); */
+  background-position: center right;
+  background-color: #333;
+  color: antiquewhite;
+  min-height: 800px;
+}
+
+#organizer-home {
+  /* background-image: url('Static/images/background_admin.jpg'); */
+  background-position: center right;
+  background-color: #333;
+  color: antiquewhite;
+  min-height: 800px;
+}
+
+#teacher-home {
+  /* background-image: url('Static/images/background_admin.jpg'); */
+  background-position: center right;
+  background-color: #333;
+  color: antiquewhite;
+  min-height: 800px;
+}
+
+
+
+#for-full-page {
+  min-height: 810px;
 }
 
 #showcase h1{
@@ -100,14 +145,62 @@ body{
 
 #main-footer{
   background-color: #333;
+  /* background-image: linear-gradient(to right, rgb(255, 255, 255) , rgb(0, 0, 0)); */
   color: #fff;
   text-align: center;
   padding: 20px;
-  margin-top: 40px;
+  /* margin-top: 40px; */
+  min-height: 100%;
+  margin-bottom: 0;
 
 }
 
 
+
 table, th, td {
   border: 1px solid;
+}
+
+#button-logout {
+  margin-top: 10px;
+  background-color: #000000;
+  color: #f4f4f4;
+  border-radius: 10px;
+  margin-left: 80%;
+  padding: 0px 20px 0px 20px;
+}
+
+#button-logout-admin {
+  margin-top: 10px;
+  background-color: #000000;
+  color: #f4f4f4;
+  border-radius: 10px;
+  margin-left: 55%;
+  padding: 0px 20px 0px 20px;
+}
+
+#button-logout-organizer {
+  margin-top: 10px;
+  background-color: #000000;
+  color: #f4f4f4;
+  border-radius: 10px;
+  margin-left: 50%;
+  padding: 0px 20px 0px 20px;
+}
+
+#button-logout-teacher {
+  margin-top: 10px;
+  background-color: #000000;
+  color: #f4f4f4;
+  border-radius: 10px;
+  margin-left: 60%;
+  padding: 0px 20px 0px 20px;
+}
+
+#year {
+  font-size: small;
+}
+
+#to-leave-some-margin {
+  margin-top: 30px;
 }

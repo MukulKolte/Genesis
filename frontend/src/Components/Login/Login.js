@@ -4,30 +4,29 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Home/Header';
 import Footer from '../Home/Footer';
 import './Login.css';
-import { Box } from '@mui/material';
+import HomeNav from '../Home/HomeNav';
 
-function Login() {
+
+export default function Login() {
 
     const navigate = useNavigate();
     
     const handleSubmit = (e) => {
         e.preventDefault();
-
         let form_login = document.getElementById('login_form');
 
         axios.post('http://localhost:8080/login', {
             email: form_login.elements['email'].value,
             password: form_login.elements['pass'].value,
-            // role: form_login.elements['role'].value
         })
         .then(res => {
-            // console.log(res.data.length);
             if(res.data.length === 0) {
                 alert("Invalid credentials.")
             }
             else{
                 localStorage.setItem('user_id', res.data[0].id);
                 localStorage.setItem('user_role', res.data[0].user_role);
+                localStorage.setItem('user_name', res.data[0].name);
                 const pageMapping = {
                     admin: "/admin",
                     participant: "/participants",
@@ -47,58 +46,30 @@ function Login() {
     return (
         <div>
             <Header/>
-            <nav id="navbar">
-                    <div class="container">
-                            <ul>
-                                <li><a href="/">Home</a></li>
-                                <li><a href="/aboutus">About</a></li>
-                                <li><a href="/competitions">Competitions</a></li>
-                                <li><a href="/contact">Contact</a></li>
-                            </ul>
-                    </div>
-                </nav> 
-
-            <div id="login-head">
-            <h2>Get yourselves logged in!!</h2>
-            </div>
-            <div id="container-login">
-            <Box
-                  height={200}
-                  width={200}
-                  my={4}
-                  display="flex"
-                  flexDirection="column"
-                  alignItems="center"
-                  justifyContent="center"
-                  gap={4}
-                  p={2}
-                  sx={{ border: '2px solid grey' }}
-                >
+            <HomeNav/>
+            <div id='for-full-page'>
+                <div id="login-head">
+                <h2>Get yourselves logged in!!</h2>
+                <b><a href='/register' className='reg-link' style={{color:'black', textDecoration:'none'}}> New here ? <span style={{color:'red'}}>REGISTER</span> now</a></b>
+                </div>
+                <div id="container-login">
                 
-                
-            <form id='login_form' onSubmit={handleSubmit}>
+                    
+                    
+                <form id='login_form' onSubmit={handleSubmit}>
 
-                <label for="email">Email:</label><br />
-                <input type="text" id="email" name="email" /><br />
+                    <label for="email">Email:</label><br />
+                    <input type="text" id="email" name="email" /><br />
 
-                <label for="pass">Password:</label><br />
-                <input type="password" id="pass" name="pass" /><br /> <br />
+                    <label for="pass">Password:</label><br />
+                    <input type="password" id="pass" name="pass" /><br /> <br />
 
-                {/* <label for="role">Role:</label><br />
-                <select name="role" id="role">
-                    <option value="admin">Admin</option>
-                    <option value="organizer">Organizer</option>
-                    <option value="participant">Participant</option>
-                    <option value="teacher">Teacher</option>
-                </select><br /><br /> */}
-
-                <input type="submit" value="Submit" />
-            </form>
-            </Box>
+                    <input type="submit" value="Submit" />
+                </form>
+                </div>
             </div>
-            <Footer></Footer>
+            <Footer />
         </div>
     )
 }
 
-export default Login

@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Home/Header';
 import Footer from '../Home/Footer';
+import OrganizerNav from './OrganizerNav';
+import './FileUpload.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function FileUpload() {
 
@@ -26,9 +29,10 @@ function FileUpload() {
         const formdata = new FormData();
         formdata.append('image', file);
         axios.post('http://localhost:8080/upload', formdata)
-            .then(res => {
-                if (res.data.Status === "Success") {
+            .then(res => { console.log(res.data);
+                if (res.data.Status === "Success.") {
                     console.log("Uploaded successfully");
+                    navigate('/fileuploadsuccess');
                 } else {
                     console.log("Some error occurred while uploading image.")
                 }
@@ -49,7 +53,7 @@ function FileUpload() {
         })
         .then(res => {
             console.log(res);
-            // navigate('/admin');
+             
         })
         .catch(err => console.log('This is error'));
     }
@@ -57,43 +61,47 @@ function FileUpload() {
     return (
         <div>
             <Header/>
-            <nav id="navbar">
-                    <div class="container">
-                            <ul>
-                                <li><a href="/organizer">Home</a></li> 
-                                <li><a href="/fileupload">Organise Competition</a></li>
-                            </ul>
-                    </div>
-                </nav> 
+            <OrganizerNav/>
+            <div class="container">
+            <div id='fileupload-head'>
+                <h3> Welcome to our Competition Organization Form! Here, you can easily input all the necessary details to create and manage your competitions.</h3>
+            </div>
+            <h2>Step 1: Fill the details and click Submit</h2>
 
-
+            <div id='container-competition-form'>
             <form id='competition_form' onSubmit={handleSubmit}>
 
                 <label>Competition Title:</label><br />
-                <input type="text" id="title" name="title" /><br />
+                <input type="text" id="title" name="title" required/><br />
 
                 <label>Competition theme:</label><br />
-                <input type="text" id="theme" name="theme" /><br />
+                <input type="text" id="theme" name="theme" required/><br />
 
                 <label>Competition Status:</label><br />
-                <input type="text" id="status" name="status" /><br />
+                <input type="text" id="status" name="status" required/><br />
 
                 <label>Date:</label><br />
-                <input type="date" id="date_of_comp" name="date_of_comp" /><br />
+                <input type="date" id="date_of_comp" name="date_of_comp" required/><br />
 
                 <label>Description:</label><br />
-                <textarea id="descr_of_comp" name="descr_of_comp" rows="4" cols="50" /><br /><br />
+                <textarea id="descr_of_comp" name="descr_of_comp" rows="4" cols="50" required /><br /><br />
 
                 <input type="submit" value="Submit" />
 
             </form>
+            </div>
 
-            <br /><br /><br />
-            <input type='file' onChange={handleFile} />
-            <button onClick={handleUpload}>Upload</button> <br /><br />
+            <h2>Step 2: Select the file and click upload</h2>
+            
+            <div id='container-competition-upload'>
+                <div id='container-competition-upload-elements'>
+                <input type='file' onChange={handleFile} required/>
+                <button onClick={handleUpload} type="button" class="btn btn-primary">Upload</button> 
+                </div>
+            </div>
 
             {/* <img src={`http://localhost:8080/images/` + data.image} alt='This is image' /> */}
-            
+            </div>
             <Footer/>
         </div>
     )

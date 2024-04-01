@@ -11,14 +11,19 @@ import Home from './Components/Home/Home.js';
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import EventReport from './Components/Admin/EventReport.js';
-import User_Registration from './Components/Login/User_Registration.js';
+import User_Registration from './Components/Admin/UserRegistration.js';
 import FileUpload from './Components/Organizer/FileUpload.js';
-import { Switch } from '@mui/material';
-import { useEffect } from 'react';
 import UserReport from './Components/Admin/UserReport.js';
 import Enrollments from './Components/User/Enrollments.js';
-import Competitions from './Components/Competitions.js';
-import EnrollmentDetails from './Components/EnrollmentDetails.js';
+
+import Register from './Components/Login/Register.js';
+import UserRegistration from './Components/Admin/UserRegistration.js';
+import Contact from './Components/Home/Contact.js';
+import Logout from './Components/Login/Logout.js';
+import CompetitionsPreview from './Components/Home/CompetitionsPreview.js';
+import FileUploadSuccess from './Components/Organizer/FileUploadSuccess.js';
+import CompetitionStatus from './Components/Organizer/CompetitionsStatus.js';
+import EnrollmentReport from './Components/Admin/EnrollmentReport.js';
 
 
 
@@ -33,12 +38,18 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/competitions_preview" element={<CompetitionsPreview />} />
+          <Route path="/fileuploadsuccess" element={<FileUploadSuccess />} />
+          <Route path="/competitions_status" element={<CompetitionStatus/>} />
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
             <Route path="/admin" element={<Admin />} />}
 
-          {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
-            <Route path="/enrollment_details" element={<EnrollmentDetails />} />}
+          {/* {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&} */}
+            <Route path="/enrollments" element={<EnrollmentReport />} />
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
             <Route path="/organizer" element={<Organizer />} />}
@@ -53,7 +64,7 @@ function App() {
             <Route path="/event_report" element={<EventReport />} />}
 
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
-            <Route path="/register" element={<User_Registration />} />}
+            <Route path="/user_register" element={<UserRegistration />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
             <Route path="/fileupload" element={<FileUpload />} />}
@@ -62,7 +73,7 @@ function App() {
             <Route path="/user_report" element={<UserReport />} />}
 
           <Route path='/user_enrollments' element={<Enrollments />} />
-          <Route path='/competitions' element={<Competitions />} />
+         
 
           <Route path="*" element={<ErrorPage />} />
         </Routes>
