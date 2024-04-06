@@ -40,6 +40,7 @@ export default function EnrollmentReport() {
                   <th scope="col">Competition Title</th>
                   <th scope="col">Date of Competition</th>
                   <th scope="col">Participant Names</th>
+                  <th scope="col">Number of participants</th>
                 </tr>
               </thead>
 
@@ -51,6 +52,7 @@ export default function EnrollmentReport() {
                     <td>{comp.comp_title}</td>
                     <td>{comp.date_0f_competition}</td>
                     <td>{comp.user_names}</td>
+                    <td>{comp.enrollments}</td>
                   </tr>
                 })}
               </tbody>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Header from '../Home/Header';
 import Footer from '../Home/Footer';
@@ -9,6 +9,40 @@ import AdminNav from './AdminNav';
 export default function UserRegistration() {
 
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+    const [mobileNumber, setMobileNumber] = useState("");
+    const [mobileNumberError, setMobileNumberError] = useState("");
+
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const isValidMobileNumber = (mobile_number) => /^(7|8|9)\d{9}/.test(mobile_number);
+
+    const handleEmailChange = (event) => {
+        const enteredEmail = event.target.value;
+        setEmail(enteredEmail);
+        setEmailError(isValidEmail(enteredEmail) ? "" : "Invalid email format");
+    };
+
+    const handlePasswordChange = (event) => {
+        const newPassword = event.target.value;
+
+        setPassword(newPassword);
+        setPasswordError(
+            newPassword.length >= 8
+                ? ""
+                : "Password must be at least 8 characters long"
+        );
+    };
+
+    const handleMobileNumberChange = (event) => {
+        const newMobileNumber = event.target.value;
+
+        setMobileNumber(newMobileNumber);
+        setMobileNumberError(isValidMobileNumber(newMobileNumber) ? "" : "Invalid mobile number.");
+    };
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -45,7 +79,10 @@ export default function UserRegistration() {
                     <input type="text" id="name" name="name" /><br />
 
                     <label>Password:</label><br />
-                    <input type="password" id="pass" name="pass" /><br />
+                    <input type="password" onChange={handlePasswordChange} pattern=".{8,}" id="pass" name="pass" /><br />
+                    <span>{passwordError && (
+                            <p style={{ color: "red" }}>{passwordError}</p>
+                        )}</span>
 
                     <label>User Role:</label><br />
                     <select name="role" id="role">
@@ -56,10 +93,16 @@ export default function UserRegistration() {
                     </select><br />
 
                     <label>Mobile number:</label><br />
-                    <input type="number" id="mobile" name="mobile" /><br />
+                    <input type="text" onChange={handleMobileNumberChange} minlength="10" maxlength="10" id="mobile" name="mobile" /><br />
+                    <span>{mobileNumberError && (
+                            <p style={{ color: "red" }}>{mobileNumberError}</p>
+                        )}</span>
 
                     <label>Email:</label><br />
-                    <input type="email" id="email" name="email" /><br />
+                    <input type="email" onClick={handleEmailChange} pattern="[^@\s]+@[^@\s]+\.[^@\s]+" id="email" name="email" /><br />
+                    <span>{emailError && (
+                            <p style={{ color: "red" }}>{emailError}</p>
+                        )}</span>
 
                     <label>Date of Birth:</label><br />
                     <input type="date" id="dob" name="dob" /><br />

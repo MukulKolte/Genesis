@@ -27,7 +27,7 @@ const upload = multer({
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "Once@2024",
     database: "Genesis"
 })
 
@@ -156,7 +156,11 @@ app.post('/personal_enrollments', (req, res) => {
 //competitions enrollments can seen admin 
 app.get('/enrollment_details', (req, res) => {
 
-    const sql = "SELECT cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image, GROUP_CONCAT(u.name SEPARATOR ', ') AS user_names FROM user_enrollment cu JOIN user_registration u ON cu.user_id = u.id WHERE cu.comp_id IN (Select distinct fu.comp_id from user_enrollment fu) GROUP BY cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image";
+    const sql = "SELECT cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image, GROUP_CONCAT(u.name SEPARATOR ', ') AS user_names, count(u.name) as enrollments\
+    FROM user_enrollment cu\
+    JOIN user_registration u ON cu.user_id = u.id\
+    WHERE cu.comp_id IN (Select distinct fu.comp_id from user_enrollment fu)\
+    GROUP BY cu.comp_id, cu.comp_title, cu.date_0f_competition, cu.image";
 
 
     db.query(sql, (err, result) => {

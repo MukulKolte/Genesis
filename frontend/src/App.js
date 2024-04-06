@@ -48,8 +48,8 @@ function App() {
           {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&
             <Route path="/admin" element={<Admin />} />}
 
-          {/* {localStorage.getItem('user_id') && (localStorage.getItem('user_role') === 'admin') &&} */}
-            <Route path="/enrollments" element={<EnrollmentReport />} />
+          {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'admin') || (localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === 'teacher')) &&
+            <Route path="/enrollments" element={<EnrollmentReport />} />}
 
           {localStorage.getItem('user_id') && ((localStorage.getItem('user_role') === 'organizer') || (localStorage.getItem('user_role') === "admin")) &&
             <Route path="/organizer" element={<Organizer />} />}

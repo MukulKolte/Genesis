@@ -26,6 +26,7 @@ export default function Admin() {
             <li><a href='/event_report'>View Event Report</a></li>
             <li><a href='/user_report'>View User Report</a></li>
             <li><a href='/enrollments'>View Enrollment Report</a></li>
+            <li><a href='/fileupload'>Organize Competition</a></li>
           </ul>
       </div>
       </div>
