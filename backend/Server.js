@@ -246,6 +246,34 @@ app.post('/user_enrollments', (req, res) => {
 
 });
 
+//To get total number of users on admin page
+app.get('/total_users', (req, res) => {
+
+    const query = "select count(*) as data from user_registration Where user_role = 'participant'";
+
+    db.query(query, (err, result) => {
+
+        if(err) return res.json(err)
+        return res.json(result);
+
+    });
+
+});
+
+//To get total active competitions number for admin page
+app.get('/total_active_competitions', (req, res) => {
+
+    const query = "select count(*) as data from competition_registration where teacher_approval = 'approved' and date_0f_competition >= CURDATE()";
+
+    db.query(query, (err, result) => {
+
+        if(err) return res.json(err)
+        return res.json(result);
+
+    });
+
+});
+
 
 app.listen(8080, ()=> {
     console.log("Listening on 8080...");

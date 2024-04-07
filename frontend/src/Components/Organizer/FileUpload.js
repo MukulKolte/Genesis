@@ -6,9 +6,14 @@ import Footer from '../Home/Footer';
 import OrganizerNav from './OrganizerNav';
 import './FileUpload.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AdminNav from '../Admin/AdminNav';
+import TeacherNav from '../Teacher/TeacherNav';
 
 function FileUpload() {
 
+    const loginRole = localStorage.getItem('user_role');
+
+    const [success, setSuccess] = useState();
     const [file, setFile] = useState();
     const [data, setData] = useState([]);
     const navigate = useNavigate();
@@ -31,7 +36,7 @@ function FileUpload() {
         axios.post('http://localhost:8080/upload', formdata)
             .then(res => { console.log(res.data);
                 if (res.data.Status === "Success.") {
-                    console.log("Uploaded successfully");
+                    // console.log("Uploaded successfully");
                     navigate('/fileuploadsuccess');
                 } else {
                     console.log("Some error occurred while uploading image.")
@@ -52,7 +57,8 @@ function FileUpload() {
             description: form_comp.elements["descr_of_comp"].value,
         })
         .then(res => {
-            console.log(res);
+            // console.log(res);
+            setSuccess(true);
              
         })
         .catch(err => console.log('This is error'));
@@ -61,7 +67,9 @@ function FileUpload() {
     return (
         <div>
             <Header/>
-            <OrganizerNav/>
+
+            {loginRole=== 'admin' ? <AdminNav/> : loginRole=== 'organizer' ? <OrganizerNav/> : <TeacherNav/>}
+
             <div class="container">
             <div id='fileupload-head'>
                 <h3> Welcome to our Competition Organization Form! Here, you can easily input all the necessary details to create and manage your competitions.</h3>
@@ -85,6 +93,8 @@ function FileUpload() {
 
                 <label>Description:</label><br />
                 <textarea id="descr_of_comp" name="descr_of_comp" rows="4" cols="50" required /><br /><br />
+
+                <span style={{color: "green"}}>{success ? "Organized successfully." : ""}</span>
 
                 <input type="submit" value="Submit" />
 
