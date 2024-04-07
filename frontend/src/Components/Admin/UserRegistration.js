@@ -71,7 +71,9 @@ export default function UserRegistration() {
     return (
         <div>
             <Header/>
+            <div style={{marginBottom: "100px"}}>
             <AdminNav/>
+            </div>
             <div id='for-full-page'>
                 <div id='container-register'>
                 <form id='user_registration_form' onSubmit={handleSubmit}>
@@ -99,7 +101,7 @@ export default function UserRegistration() {
                         )}</span>
 
                     <label>Email:</label><br />
-                    <input type="email" onClick={handleEmailChange} pattern="[^@\s]+@[^@\s]+\.[^@\s]+" id="email" name="email" /><br />
+                    <input type="email" onChange={handleEmailChange} pattern="[^@\s]+@[^@\s]+\.[^@\s]+" id="email" name="email" /><br />
                     <span>{emailError && (
                             <p style={{ color: "red" }}>{emailError}</p>
                         )}</span>

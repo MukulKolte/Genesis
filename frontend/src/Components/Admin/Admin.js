@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Home/Header';
 import Footer from '../Home/Footer';
 import AdminNav from './AdminNav';
+import axios from 'axios';
 
 export default function Admin() {
 
+  const [userCount, setUserCount] = useState();
+  const [activeCompetitionsCount, setActiveCompetitionsCount] = useState();
+
+  useEffect(() => {
+
+    axios.get('http://localhost:8080/total_users')
+    .then(
+      res => setUserCount(res.data[0].data)
+    )
+    .catch(
+      err => console.log(err)
+    )
+
+    axios.get('http://localhost:8080/total_active_competitions')
+    .then(
+      res => setActiveCompetitionsCount(res.data[0].data)
+    )
+    .catch(
+      err => console.log(err)
+    )
+
+  }, []);
 
   return (
     <div >
@@ -16,12 +39,11 @@ export default function Admin() {
           <br/>
           <h3>Dashboard Overview</h3>
           <ul>
-            <li>Total Users: </li>
-            <li>Active Competitions:</li>
+            <li>Total Users: {userCount}</li>
+            <li>Active Competitions: {activeCompetitionsCount}</li>
           </ul>
           <h3>Quick Actions</h3>
           <ul>
-            <li><a href=''>Create New Competition</a></li>
             <li><a href='/user_register'>Create New User</a></li>
             <li><a href='/event_report'>View Event Report</a></li>
             <li><a href='/user_report'>View User Report</a></li>
